@@ -1,0 +1,26 @@
+﻿@model IEnumerable<FirstWebAppMVC.Models.ProductModel>
+
+<p>
+	<a asp-action="CreateForm">Create New</a>
+</p>
+
+<div class="container d-flex flex-wrap" style="justify-content: space-between;">
+	@foreach (var item in Model)
+	{
+		var name = item.Name;
+		var firstWord = (name.IndexOf(" ") < 0) ? name : name.Substring(0, name.IndexOf(" "));
+
+		<div class="card text-center my-3" style="width: 18rem;">
+			<img src="https://loremflickr.com/280/200/@firstWord" class="card-img-top" alt="@item.Name">
+			<div class="card-body">
+				<h5 class="card-title">@item.Name</h5>
+				<h6 class="card-text">@Html.DisplayFor(p => item.Price) </h6>
+				<p class="card-text">
+					@item.Description
+				</p>
+				<a href="Products/Details/@item.Id" class="btn btn-primary">Details</a>
+			</div>
+		</div>
+	}
+
+</div>
